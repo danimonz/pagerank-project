@@ -167,10 +167,10 @@ class WebGraph():
                 # but you'll have to read the code above to figure out what variables should get passed to that function
                 # and what pre/post processing needs to be done to them
                 
-                q = (alpha*x.t()@a + (1-alpha)) * v.t()
+                last_part = (alpha*x.t()@a + (1-alpha)) * v.t()
 
                 x = torch.sparse.addmm(
-                    q.t(),
+                    last_part.t(),
                     self.P.t(),
                     x,
                     beta=1,
