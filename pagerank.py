@@ -113,7 +113,7 @@ class WebGraph():
                 normalize the vector
             '''
             for i in range(n):
-                if url_satisfies_query(self._index_to_url(i)):
+                if url_satisfies_query(self._index_to_url(i), query):
                     v[i] = 1
 
 
