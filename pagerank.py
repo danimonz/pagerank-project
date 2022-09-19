@@ -105,6 +105,19 @@ class WebGraph():
         else:
             v = torch.zeros(n)
             # FIXME: implement Task 2
+            '''
+            for each index in the personalization vector:
+                get the url for the index (see the _url_to_index function)
+                check if the url satisfies the input query (see the url_satisfies_query function)
+                    if so, set the corresponding index to one
+                normalize the vector
+            '''
+            for i in range(n):
+                if url_satisfies_query(self._index_to_url(i)):
+                    v[i] = 1
+
+
+
         
         v_sum = torch.sum(v)
         assert(v_sum>0)
