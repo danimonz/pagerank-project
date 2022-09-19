@@ -134,6 +134,14 @@ class WebGraph():
                 x0 = torch.unsqueeze(x0,1)
             x0 /= torch.norm(x0)
 
+            #finding dangling nodes, finding a
+            #a page is a dangling node when a=1, a=0 if it isn't.
+            #page is a dangling node when it connects to no other page in the graph
+            nondangling_nodes = torch.sparse.sum(self.P,1).indices() #sum of row in P then index of non-zero rows
+            a = torch.ones((n,1)) #makes an array of ones
+            a[nondangling_nodes] = 0 #makes non-dangling nodes 0
+
+
             # main loop
             xprev = x0
             x = xprev.detach().clone()
@@ -145,6 +153,16 @@ class WebGraph():
                 # HINT: this can be done with a single call to the `torch.sparse.addmm` function,
                 # but you'll have to read the code above to figure out what variables should get passed to that function
                 # and what pre/post processing needs to be done to them
+                
+                q = (alpha*x.t()@a + (1-alpha)) * v.t()
+
+                x = torch.sparse.addmm(
+                    q.t(),
+                    self.P.t(),
+                    x,
+                    beta=1,
+                    alpha=alpha
+                    )
 
                 # output debug information
                 residual = torch.norm(x-xprev)
