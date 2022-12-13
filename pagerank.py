@@ -9,6 +9,7 @@ import math
 import torch
 import gzip
 import csv
+import gensim.downloader
 
 import logging
 
@@ -24,6 +25,7 @@ class WebGraph():
         '''
 
         self.url_dict = {}
+        self.vectors = gensim.downloader.load('word2vec-google-news-300')
         indices = []
 
         from collections import defaultdict
@@ -189,12 +191,34 @@ class WebGraph():
             return x.squeeze()
 
 
-    def search(self, pi, query='', max_results=10):
+    def search(self, pi, query='', max_results=10, p=50):
         '''
         Logs all urls that match the query.
         Results are displayed in sorted order according to the pagerank vector pi.
         '''
         n = self.P.shape[0]
+        #Word2Vec
+         
+        similarWords = vectors.most_similar(args.search_query)
+        
+        for x in range(n):
+            word_n = 0;
+            score = 0;
+            url = self.index_to_url(x)
+            
+            for y in range(10):
+                w = similarWords[y][0]
+                
+                if url_satisfies_query(url, w):
+                    word_n += 1
+                    score += word_n * (simlarWords[w][1])**p)
+            
+            pi[x] += score
+        
+        
+        
+        #PageRank 1
+        
         vals,indices = torch.topk(pi,n)
 
         matches = 0
@@ -236,13 +260,24 @@ def url_satisfies_query(url, query):
     '''
     satisfies = False
     terms = query.split()
-
-    num_terms=0
+    
     for term in terms:
         if term[0] != '-':
+            similar = vectors.most_similar(term)
+            similar.append((term, 1.0))
             num_terms+=1
-            if term in url:
-                satisfies = True
+            for word in similar:
+                if word[0] in url:
+                    satisfies = True
+                        
+    """
+    Pagerank
+    for term in terms:
+        sim_words = vectors.most_similar(term)
+        # we are adding the top 5 similar words, change range to change this
+        for x in range(5):
+            terms.append(sim_words[x][0])
+    """
     if num_terms==0:
         satisfies=True
 
