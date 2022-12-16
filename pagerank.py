@@ -205,7 +205,7 @@ class WebGraph():
         for x in range(n):
             word_n = 0;
             score = 0;
-            url = self.index_to_url(x)
+            url = self._index_to_url(x)
             
             for y in range(10):
                 w = similarWords[y][0]
