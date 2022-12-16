@@ -261,6 +261,7 @@ def url_satisfies_query(url, query):
     '''
     satisfies = False
     terms = query.split()
+    num_terms = 0
     
     for term in terms:
         if term[0] != '-':
