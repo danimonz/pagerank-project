@@ -10,7 +10,7 @@ import torch
 import gzip
 import csv
 import gensim.downloader
-vectors = gensim.dowloader.load('word2vec-google-news-300')
+vectors = gensim.downloader.load('word2vec-google-news-300')
 
 import logging
 
