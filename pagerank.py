@@ -212,7 +212,7 @@ class WebGraph():
                 
                 if url_satisfies_query(url, w):
                     word_n += 1
-                    score += (word_n * (similarWords[w][1]**p))
+                    score += (word_n * (similarWords[y][1]**p))
             
             pi[x] += score
         
