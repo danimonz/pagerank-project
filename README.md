@@ -1,7 +1,7 @@
 #Word2vec Results
 
 ```
-$ python3 pagerank.py --data=./datalawfareblog.csv.gz --search_query='weapons'
+$ python3 pagerank.py --data=./data/datalawfareblog.csv.gz --search_query='weapons'
 INFO:root:rank=0 pagerank=0.0011619674041867256 url=www.lawfareblog.com/too-early-ban-us-and-uk-positions-lethal-autonomous-weapons-systems
 INFO:root:rank=1 pagerank=0.0006675782497040927 url=www.lawfareblog.com/history-do-it-yourself-weapons-and-explosives-manuals-america
 INFO:root:rank=2 pagerank=0.0006599930347874761 url=www.lawfareblog.com/lethal-autonomous-weapons-systems-first-and-second-un-gge-meetings
