@@ -10,7 +10,7 @@ import torch
 import gzip
 import csv
 import gensim.downloader
-vectors = gensim.downloader.load('word2vec-google-news-300')
+glove_twitter = gensim.downloader.load('glove-twitter-100')
 
 import logging
 
@@ -26,7 +26,6 @@ class WebGraph():
         '''
 
         self.url_dict = {}
-        self.vectors = gensim.downloader.load('word2vec-google-news-300')
         indices = []
 
         from collections import defaultdict
@@ -200,7 +199,7 @@ class WebGraph():
         n = self.P.shape[0]
         #Word2Vec
          
-        similarWords = vectors.most_similar(args.search_query)
+        similarWords = glove_twitter.most_similar(args.search_query)
         
         for x in range(n):
             word_n = 0;
@@ -265,7 +264,7 @@ def url_satisfies_query(url, query):
     
     for term in terms:
         if term[0] != '-':
-            similar = vectors.most_similar(term)
+            similar = glove_twitter.most_similar(term)
             similar.append((term, 1.0))
             num_terms+=1
             for word in similar:
