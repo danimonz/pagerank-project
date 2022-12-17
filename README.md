@@ -1,6 +1,6 @@
 #Word2vec Results
 
-'''
+```
 $ python3 pagerank.py --data=./datalawfareblog.csv.gz --search_query='weapons'
 INFO:root:rank=0 pagerank=0.0011619674041867256 url=www.lawfareblog.com/too-early-ban-us-and-uk-positions-lethal-autonomous-weapons-systems
 INFO:root:rank=1 pagerank=0.0006675782497040927 url=www.lawfareblog.com/history-do-it-yourself-weapons-and-explosives-manuals-america
@@ -12,7 +12,7 @@ INFO:root:rank=6 pagerank=0.0005889176391065121 url=www.lawfareblog.com/critical
 INFO:root:rank=7 pagerank=0.0005780397332273424 url=www.lawfareblog.com/digital-strangelove-cyber-dangers-nuclear-weapons
 INFO:root:rank=8 pagerank=0.0005346386460587382 url=www.lawfareblog.com/chemical-weapons-syria-enough-justify-use-force
 INFO:root:rank=9 pagerank=0.0005290458793751895 url=www.lawfareblog.com/complexities-usg-covert-action-supply-weapons-syrian-rebels
-'''
+```
 
 
 # Pagerank Project
